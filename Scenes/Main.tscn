@@ -1,0 +1,558 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Scripts/GUI Left.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/GUI Right.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Left Hand.glb" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Right_Controller.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Right Hand.glb" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Left_Controller.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/PermanentMarker-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/Reverse Button Material.tres" type="Material" id=9]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="ProceduralSky" id=2]
+sky_top_color = Color( 0.239216, 0.627451, 0.839216, 1 )
+sky_horizon_color = Color( 1, 1, 1, 1 )
+sun_angle_min = 12.0
+sun_angle_max = 120.0
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+background_sky = SubResource( 2 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+fog_enabled = true
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="SphereMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 1.0
+roughness = 0.1
+
+[sub_resource type="BoxShape" id=7]
+
+[sub_resource type="CubeMesh" id=8]
+
+[sub_resource type="PlaneMesh" id=9]
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 8 )
+
+[sub_resource type="PlaneMesh" id=11]
+
+[sub_resource type="DynamicFont" id=12]
+font_data = ExtResource( 8 )
+
+[node name="Main" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Floor" type="MeshInstance" parent="."]
+transform = Transform( 5, 0, 0, 0, 0.2, 0, 0, 0, 5, 0.00369334, -0.219418, 0.000432372 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Light" type="DirectionalLight" parent="."]
+transform = Transform( 0.223386, 0.830958, -0.509517, 0, 0.522726, 0.852501, 0.97473, -0.190437, 0.11677, 0, 19.163, 0 )
+shadow_enabled = true
+directional_shadow_max_distance = 200.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+world_scale = 1.4
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+current = true
+
+[node name="Left_Controller" parent="ARVROrigin" instance=ExtResource( 7 )]
+
+[node name="Right_Controller" parent="ARVROrigin" instance=ExtResource( 5 )]
+
+[node name="Buttons" type="Spatial" parent="."]
+
+[node name="Left Hand Buttons" type="Spatial" parent="Buttons"]
+
+[node name="Left Hand Overlay" parent="Buttons/Left Hand Buttons" instance=ExtResource( 4 )]
+transform = Transform( 8.14603e-08, 2.65431e-14, 0.5, 1.62921e-07, -0.5, 0, 0.5, 1.62921e-07, -8.14603e-08, -3, 0.2, 2 )
+
+[node name="Keypoint1L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint1L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.80495, 0.326063, 1.46595 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint1L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.80495, 0.326063, 1.46595 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint2L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint2L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.59413, 0.31432, 1.52246 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint2L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.59413, 0.31432, 1.52246 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint3L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint3L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.31846, 0.370331, 1.66229 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint3L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.31846, 0.370331, 1.66229 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint4L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint4L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.99003, 0.357511, 1.75936 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint4L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.99003, 0.357511, 1.75936 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint5L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint5L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.74009, 0.309132, 1.78978 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint5L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.74009, 0.309132, 1.78978 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint6L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint6L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.40539, 0.357047, 1.90497 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint6L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.40539, 0.357047, 1.90497 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint7L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint7L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.12043, 0.364567, 2.12231 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint7L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.12043, 0.364567, 2.12231 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint8L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint8L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.84659, 0.328131, 2.12231 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint8L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.84659, 0.328131, 2.12231 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint9L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint9L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.45103, 0.36246, 2.14404 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint9L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.45103, 0.36246, 2.14404 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint10L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint10L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.98657, 0.36732, 2.55137 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint10L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.98657, 0.36732, 2.55137 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint11L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint11L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.7452, 0.323314, 2.487 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint11L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.7452, 0.323314, 2.487 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint12L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint12L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.43142, 0.372933, 2.43471 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint12L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.43142, 0.372933, 2.43471 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint13L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint13L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.21419, 0.576051, 2.89732 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint13L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.21419, 0.576051, 2.89732 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint14L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint14L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -2.9849, 0.482342, 2.68009 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint14L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -2.9849, 0.482342, 2.68009 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint15L" type="RigidBody" parent="Buttons/Left Hand Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Left Hand Buttons/Keypoint15L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -2.39355, 0.38316, 2.05657 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Left Hand Buttons/Keypoint15L"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -2.39355, 0.38316, 2.05657 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Right Hand Buttons" type="Spatial" parent="Buttons"]
+
+[node name="Right Hand Overlay" parent="Buttons/Right Hand Buttons" instance=ExtResource( 6 )]
+transform = Transform( 8.14603e-08, 2.65431e-14, 0.5, 1.62921e-07, -0.5, 0, 0.5, 1.62921e-07, -8.14603e-08, -3, 0.2, -2 )
+
+[node name="Keypoint1R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint1R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.86529, 0.326063, 2.84576 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint1R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.86529, 0.326063, 2.84576 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint2R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint2R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.67057, 0.31432, 2.79767 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint2R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.67057, 0.31432, 2.79767 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint3R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint3R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.39489, 0.370331, 2.70418 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint3R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.39489, 0.370331, 2.70418 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint4R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint4R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.05037, 0.357511, 2.56391 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint4R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.05037, 0.357511, 2.56391 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint5R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint5R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.81652, 0.309132, 2.51388 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint5R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.81652, 0.309132, 2.51388 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint6R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint6R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.48182, 0.357047, 2.45207 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint6R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.48182, 0.357047, 2.45207 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint7R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint7R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.20089, 0.364567, 2.18265 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint7R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.20089, 0.364567, 2.18265 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint8R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint8R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.92704, 0.328131, 2.18265 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint8R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.92704, 0.328131, 2.18265 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint9R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint9R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.51942, 0.36246, 2.18025 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint9R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.51942, 0.36246, 2.18025 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint10R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint10R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.063, 0.36732, 1.76693 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint10R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -4.063, 0.36732, 1.76693 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint11R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint11R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.78945, 0.323314, 1.82325 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint11R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.78945, 0.323314, 1.82325 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint12R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint12R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.44751, 0.372933, 1.93588 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint12R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.44751, 0.372933, 1.93588 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint13R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint13R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.25442, 0.576051, 1.43706 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint13R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.25442, 0.576051, 1.43706 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint14R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint14R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.00099, 0.482342, 1.65027 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint14R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -3.00099, 0.482342, 1.65027 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Keypoint15R" type="RigidBody" parent="Buttons/Right Hand Buttons"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625429, 0, -4.34106 )
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Right Hand Buttons/Keypoint15R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -2.51475, 0.391845, 2.32006 )
+shape = SubResource( 4 )
+
+[node name="Keypoint_Mesh" type="MeshInstance" parent="Buttons/Right Hand Buttons/Keypoint15R"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -2.51475, 0.391845, 2.32006 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="Reverse Button" type="RigidBody" parent="Buttons"]
+gravity_scale = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Buttons/Reverse Button"]
+transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, -3.5, 0.181, 0 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Buttons/Reverse Button"]
+transform = Transform( 0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, -3.5, 0.181, 0 )
+mesh = SubResource( 8 )
+material/0 = ExtResource( 9 )
+
+[node name="GUI_Left_Hand" type="MeshInstance" parent="."]
+transform = Transform( -1.62921e-07, 1, 5.30863e-14, -1.62921e-07, 2.65431e-14, -1, -1, -1.62921e-07, 1.62921e-07, -5, 1, 2 )
+mesh = SubResource( 9 )
+material/0 = null
+script = ExtResource( 1 )
+
+[node name="GUI" type="Viewport" parent="GUI_Left_Hand"]
+size = Vector2( 480, 240 )
+transparent_bg = true
+hdr = false
+usage = 1
+render_target_v_flip = true
+render_target_clear_mode = 2
+
+[node name="Control" type="Control" parent="GUI_Left_Hand/GUI"]
+margin_right = 480.0
+margin_bottom = 240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="GUI_Left_Hand/GUI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3.05176e-05
+margin_bottom = 1.52588e-05
+
+[node name="Label Left" type="Label" parent="GUI_Left_Hand/GUI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3.05176e-05
+margin_bottom = 1.52588e-05
+custom_fonts/font = SubResource( 10 )
+text = "Left Hand:
+Pinky: Out
+Ring: Out
+Middle: Out
+Pointer: Out
+Thumb: Out
+Direction: Default
+Hand Pose: Default"
+align = 1
+valign = 1
+
+[node name="GUI_Right_Hand" type="MeshInstance" parent="."]
+transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65431e-14, -5, 1, -2 )
+mesh = SubResource( 11 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="GUI" type="Viewport" parent="GUI_Right_Hand"]
+size = Vector2( 480, 240 )
+transparent_bg = true
+hdr = false
+usage = 1
+render_target_v_flip = true
+render_target_clear_mode = 2
+
+[node name="Control" type="Control" parent="GUI_Right_Hand/GUI"]
+margin_right = 480.0
+margin_bottom = 240.0
+
+[node name="Panel" type="Panel" parent="GUI_Right_Hand/GUI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3.05176e-05
+margin_bottom = 1.52588e-05
+
+[node name="Label Right" type="Label" parent="GUI_Right_Hand/GUI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3.05176e-05
+margin_bottom = 1.52588e-05
+custom_fonts/font = SubResource( 12 )
+text = "Right Hand:
+Pinky: Out
+Ring: Out
+Middle: Out
+Pointer: Out
+Thumb: Out
+Direction: Default
+Hand Pose: Default"
+align = 1
+valign = 1
