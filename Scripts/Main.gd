@@ -3,7 +3,7 @@ extends Spatial
 func _ready():
 	
 	# We will be using OpenVR to drive the VR interface, so we need to find and initialize it.
-	var VR = ARVRServer.find_interface("OpenVR")
+	var VR = ARVRServer.find_interface("OpenXR")
 	if VR and VR.initialize():
 		
 		# Turn the main viewport into a AR/VR viewport,
