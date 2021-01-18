@@ -22,7 +22,7 @@ window/stretch/aspect="keep"
 
 [gdnative]
 
-singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
+singletons=[ "res://addons/godot-openxr/godot_openxr.gdnlib" ]
 
 [physics]
 
